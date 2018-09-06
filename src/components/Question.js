@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helper'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 //import { Link, withRouter } from 'react-router-dom'
 import Answered from './Answered'
 import { answerQuestion } from '../actions/shared'
@@ -48,26 +48,29 @@ class Question extends Component {
 		const hasAnswered = ( question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser) ) ? true : false
 
 		return (
-			<div className='question'>
-				<img
-					src={avatar}
-					alt={`Avatar of ${name}`}
-					className='avatar'
-				/>
-				<div className='question-info'>
-				<h5 className='center'>{name} Asks Would You Rather...</h5>
-					{ isList === true
-						? ( 
-							<Fragment>
-								<h4 className='center'>{`...${optionOne.text} OR ${optionTwo.text}...`}</h4>
-								<button className='question-button' onClick={(e) => this.toQuestion(e, id)}>View Poll</button>
-							</Fragment>
-						):(
-						 <Answered hasAnswered={hasAnswered} authedUser={authedUser} optionOne={optionOne} optionTwo={optionTwo} toParent={this.handleAnswer} />
-						)
-					}
+			<Fragment>
+				<h1>{ isList === false ? 'Poll' : ''}</h1>
+				<div className='question'>
+					<img
+						src={avatar}
+						alt={`Avatar of ${name}`}
+						className='avatar'
+					/>
+					<div className='question-info'>
+					<h5 className='center'>{name} Asks Would You Rather...</h5>
+						{ isList === true
+							? ( 
+								<Fragment>
+									<h4 className='center'>{`...${optionOne.text} OR ${optionTwo.text}...`}</h4>
+									<div className='question-button' onClick={(e) => this.toQuestion(e, id)}>View Poll</div>
+								</Fragment>
+							):(
+							 <Answered hasAnswered={hasAnswered} authedUser={authedUser} optionOne={optionOne} optionTwo={optionTwo} toParent={this.handleAnswer} />
+							)
+						}
+					</div>
 				</div>
-			</div>
+			</Fragment>
 		)
 	}
 }
