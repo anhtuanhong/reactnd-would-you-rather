@@ -2,13 +2,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
   color: #252525;
+  background: #ccc;
 }
 
 a {
@@ -17,36 +12,27 @@ a {
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 10px;
 }
 
-.btn {
-  text-transform: uppercase;
-  margin: 35px auto;
-  padding: 10px;
-  border: 1px solid rgba(0,0,0,.29);
-  cursor: pointer;
-  background: #fff;
-  font-size: 16px;
-  width: 250px;
-  position: relative;
-}
-
-.btn:hover {
-  border-color: rgba(0,0,0,.5);
-  text-decoration: none;
-}
-
-.btn:focus {
-  outline: 0;
-  font-weight: 700;
-  border-width: 2px;
-}
-
 .center {
   text-align: center;
+}
+
+h4.center {
+	letter-spacing: 1px;
+	width: 90%;
+	margin: 0px auto 10px;
+	font-size: 1.25em;
+}
+
+h5.center {
+	letter-spacing: 1px;
+	width: 90%;
+	margin: 20px auto 10px;
+	color: #666;
 }
 
 .active {
@@ -70,13 +56,106 @@ ul {
 
 li {
   list-style-type: none;
-  padding: 10px;
+  padding: 0px;
   text-decoration: none;
+}
+
+.question {
+	display: block;
+	width: 100%;
+	cursor: default;
+	margin: 10px auto 40px;
+	padding: 10px 0px;
+	background: transparent;
 }
 
 .avatar {
   height: 50px;
   border-radius: 25px;
-  margin: 10px;
-  float: left;
+  margin: 10px auto;
+  display: block;
+  border: 2px solid #fff;
 }
+
+.question-info {
+	display: block;
+	margin: -40px auto;
+	padding: 20px 10px 10px;
+	background: #fff;
+	border-radius: 10px;
+}
+
+.answerContainer {
+	position: relative;
+	width: 100%;
+	min-height: 50px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: stretch;
+	align-content: center;
+	letter-spacing: 1px;
+	font-weight: normal;
+}
+
+.answerContainer h6 {
+	padding: 0px;
+	margin: 0px;
+	font-weight: lighter;
+	height: 15px;
+	line-height: 15px;
+}
+
+.answerContainer span {
+	display: block;
+	font-size: 1em;
+	padding: 5px 0px;
+}
+
+.answerContainer span.percent {
+	font-size: 1.2em;
+}
+
+.answerContainer span.count {
+	font-size: 0.75em;
+}
+
+.option-one, .option-two {
+	display: grid;
+	align-items: center;
+	align-content: center;
+	text-align: center;
+	cursor: pointer;
+	background: #eee;
+	padding: 10px 10px 10px;
+	border-radius: 10px;
+	flex-basis: 50%;
+}
+
+.option-one {
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border-right: 1px solid #ccc;
+}
+
+.option-two {
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+.active-option.option-one, .active-option.option-two {
+	background: green;
+	color: #fff;
+}
+
+.question-button {
+	display: block;
+	margin: 0px auto;
+	padding: 10px 30px;
+	border-radius: 10px;
+	font-size: 0.9em;
+	letter-spacing: 1px;
+}
+
+
