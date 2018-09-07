@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, HashRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import LoadingBar from 'react-redux-loading'
@@ -18,7 +18,7 @@ class App extends Component {
   }
   render() {
     return (
-      <Router>
+      <HashRouter>
         <Fragment>                
           <LoadingBar style={{ backgroundColor: 'green', height: '5px' }} />          
             <Nav /> 
@@ -33,7 +33,7 @@ class App extends Component {
               </Switch>
             </div>
         </Fragment>
-      </Router>
+      </HashRouter>
     );
   }
 }
