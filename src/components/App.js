@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import LoadingBar from 'react-redux-loading'
@@ -20,18 +20,17 @@ class App extends Component {
       <Router>
         <Fragment>                
           <LoadingBar style={{ backgroundColor: 'green', height: '5px' }} />          
-            {this.props.loading === true
-              ? <Login />
-              : <Fragment>
-                  <Nav /> 
-                  <div className="container">               
-                        <Route path='/' exact component={QuestionList} />
-                        <Route path='/question/:id' component={QuestionPage} />
-                        <Route path='/add' component={NewQuestion} />
-                        <Route path='/leaderboard' component={Leaderboard} />
-                  </div>
-                </Fragment>
-            }
+            <Nav /> 
+            <div className="container">   
+              <Switch>
+                <Route path='/' exact component={QuestionList} />            
+                <Route path='/question/:id' component={QuestionPage} />
+                <Route path='/add' component={NewQuestion} />
+                <Route path='/leaderboard' component={Leaderboard} />
+                <Route path='/login' component={Login} />
+                  {/*<Route component={NoMatch} />*/}
+              </Switch>
+            </div>
         </Fragment>
       </Router>
     );
@@ -45,4 +44,4 @@ function mapStateToProps({ authedUser }) {
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App)

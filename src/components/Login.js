@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import { setAuthedUser } from '../actions/authedUser'
  
 class Login extends Component {
 	state = {
-		value: ''
+		value: '',
+		location: '/'
+	}
+
+	componentDidMount() {
+		
+
+		this.setState({
+			location: this.props.location.state ? this.props.location.state.from.pathname : ''
+		})
 	}
 
 	handleChange = (e) => {
@@ -23,10 +32,11 @@ class Login extends Component {
 	}
 
 	render() {
-		const { users } = this.props
-		const { value } = this.state
+		const { authedUser, users } = this.props
 
-		if(this.props.authedUser) {return <Redirect to='/' />}
+		if(authedUser) { return <Redirect to={{pathname: this.state.location, state: {from: this.props.location}}} />}
+		
+		const { value } = this.state
 
 		return (	
 			<div className='container login'>
@@ -62,4 +72,4 @@ function mapStateToProps ({ authedUser, users }) {
   }
 }
 
-export default connect(mapStateToProps)(Login)
+export default withRouter(connect(mapStateToProps)(Login))

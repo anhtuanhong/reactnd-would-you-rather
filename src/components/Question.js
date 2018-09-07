@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { formatAnswerQuestion } from '../utils/helper'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Link, Redirect } from 'react-router-dom'
 //import { Link, withRouter } from 'react-router-dom'
 import Answered from './Answered'
+import NoMatch from './NoMatch'
 import { answerQuestion } from '../actions/shared'
 
 class Question extends Component {
@@ -35,8 +36,10 @@ class Question extends Component {
 	render() {
 		const { question, authedUser, isList } = this.props
 
+		if( this.props.authedUser === null ){return <Redirect to={{pathname: '/login', state: {from: this.props.location}}} />}
+
 		if (question === null) {
-			return <p>This Question Doesn't Exist</p>
+			return <NoMatch />
 		}
 
 		const {
@@ -46,6 +49,8 @@ class Question extends Component {
 		const hasAnswered = ( question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser) ) ? true : false
 
 		return (
+
+
 			<Fragment>
 				<h1>{ isList === false ? 'Poll' : ''}</h1>
 				<div className='question'>

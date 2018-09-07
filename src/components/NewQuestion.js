@@ -36,10 +36,13 @@ class NewQuestion extends Component {
 	}
 
 	render() {
-		const { name, avatarURL } = this.props
-		const { optionOne, optionTwo } = this.state 
+		const { authedUser, name, avatarURL } = this.props
 
-		if(this.state.submitted) {return <Redirect to='/' />}
+		if( authedUser === null ){return <Redirect to={{pathname: '/login', state: {from: this.props.location }}} />}
+		
+		const { submitted, optionOne, optionTwo } = this.state 
+
+		if( submitted ) {return <Redirect to='/' />}
 
 		return (
 			<Fragment>
@@ -68,8 +71,8 @@ function mapStateToProps ({authedUser, users}) {
   
   return {
     authedUser,
-    name: users[authedUser].name,
-    avatarURL: users[authedUser].avatarURL
+    name: authedUser ? users[authedUser].name : null,
+    avatarURL: authedUser ? users[authedUser].avatarURL : null
   }
 }
 

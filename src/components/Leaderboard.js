@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import LeaderboardItem from './LeaderboardItem'
 
@@ -6,6 +7,9 @@ import LeaderboardItem from './LeaderboardItem'
 class Leaderboard extends Component{
 
 	render () {
+
+		if( this.props.authedUser === null ){return <Redirect to={{pathname: '/login', state: {from: this.props.location}}} />}
+
 		return (
 				<div className='leaderboard'>
 					<ul>

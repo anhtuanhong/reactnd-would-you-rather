@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Question from './Question'
 
@@ -16,9 +17,12 @@ class QuestionList extends Component{
 	}
 
 	render(){
-		const { questionIds, answeredIds } = this.props
-		const { showUnanswered } = this.state
+		const { authedUser, questionIds, answeredIds } = this.props
 
+		if( authedUser === null ){return <Redirect to={{pathname: '/login', state: {from: this.props.location}}} />}
+
+		const { showUnanswered } = this.state
+		
 		const filteredQuestions = showUnanswered ? questionIds.filter( id => !answeredIds.includes(id)) : questionIds.filter( id => answeredIds.includes(id))
 
 		return(
@@ -46,11 +50,13 @@ class QuestionList extends Component{
 
 function mapStateToProps ({authedUser, users, questions}) {
   
+
   return {
-  	answeredIds: Object.keys(users[authedUser].answers),
-    questionIds: Object.keys(questions)
-    	.sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+  	authedUser,
+  	answeredIds: authedUser ? Object.keys(users[authedUser].answers) : null,
+    questionIds: authedUser ? Object.keys(questions)
+    	.sort((a,b) => questions[b].timestamp - questions[a].timestamp) : null
   }
 }
 
-export default connect(mapStateToProps)(QuestionList)
+export default withRouter(connect(mapStateToProps)(QuestionList))
