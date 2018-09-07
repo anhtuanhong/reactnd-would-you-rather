@@ -9,6 +9,7 @@ import QuestionList from './QuestionList'
 import Leaderboard from './Leaderboard'
 import Login from './Login'
 import NewQuestion from './NewQuestion'
+import NoMatch from './NoMatch'
 import './css/App.css'
 
 class App extends Component {
@@ -21,14 +22,14 @@ class App extends Component {
         <Fragment>                
           <LoadingBar style={{ backgroundColor: 'green', height: '5px' }} />          
             <Nav /> 
-            <div className="container">   
+            <div className="container">
               <Switch>
                 <Route path='/' exact component={QuestionList} />            
                 <Route path='/question/:id' component={QuestionPage} />
                 <Route path='/add' component={NewQuestion} />
                 <Route path='/leaderboard' component={Leaderboard} />
                 <Route path='/login' component={Login} />
-                  {/*<Route component={NoMatch} />*/}
+                <Route render={() => <NoMatch />} />
               </Switch>
             </div>
         </Fragment>
