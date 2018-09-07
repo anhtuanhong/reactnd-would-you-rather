@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 class LeaderboardItem extends Component{
 	render () {
 
-		const { id, name, avatarURL, answers, questions } = this.props.user
+		const { name, avatarURL, answers, questions } = this.props.user
 
 		return (
 			<div className='leaderboard-item'>

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { formatQuestion } from '../utils/helper'
-import { withRouter } from 'react-router-dom'
+import { formatAnswerQuestion } from '../utils/helper'
+import { withRouter, Link } from 'react-router-dom'
 //import { Link, withRouter } from 'react-router-dom'
 import Answered from './Answered'
 import { answerQuestion } from '../actions/shared'
@@ -43,8 +43,6 @@ class Question extends Component {
 			id, name, avatar, optionOne, optionTwo
 		} = question
 
-		console.log( id )
-
 		const hasAnswered = ( question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser) ) ? true : false
 
 		return (
@@ -68,6 +66,10 @@ class Question extends Component {
 							 <Answered hasAnswered={hasAnswered} authedUser={authedUser} optionOne={optionOne} optionTwo={optionTwo} toParent={this.handleAnswer} />
 							)
 						}
+						{ hasAnswered && !isList
+							? <Link to='/' className='question-button small'>Done</Link>
+							: '' 
+						}
 					</div>
 				</div>
 			</Fragment>
@@ -83,7 +85,7 @@ function mapStateToProps ({authedUser, users, questions}, { id }) {
   return {
     authedUser,
     question: question
-      ? formatQuestion(question, users[question.author], authedUser)
+      ? formatAnswerQuestion(question, users[question.author], authedUser)
       : null
   }
 }

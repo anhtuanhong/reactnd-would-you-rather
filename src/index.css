@@ -11,6 +11,16 @@ a {
   color: #252525;
 }
 
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
+}
+
 .container {
   max-width: 500px;
   margin: 0 auto;
@@ -31,15 +41,81 @@ a {
   font-weight: bold;
 }
 
+.nav {
+	background: #fff;
+	padding: 5px 0px 0px;
+	box-sizing: border-box;
+	height: auto;
+	display: flex;
+	align-items: flex-end;
+}
+
 .nav ul {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   text-decoration: none;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  flex-basis: 50%;
 }
 
-.nav li:first-child {
-  padding-left: 0;
+.nav ul.nav-left {
+	margin-left: 10px;
+}
+
+.nav ul.nav-right {
+	margin-right: 10px;
+	justify-content: flex-end;
+	align-content: center;
+	align-items: center;
+	margin-bottom: 8px;
+}
+
+.nav-right .avatar {
+	height: 30px;
+	border-radius: 15px;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0px 10px;
+	border: 1px solid #ccc;
+}
+
+.nav-right span {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.nav-right .question-button.small {
+	margin: 0px auto 0px;
+}
+
+.nav li{
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+.nav li a {
+	display: inline-block;
+	padding: 15px 25px 15px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	background: #eee;
+}
+
+.nav li a:hover {
+	background: #ddd;
+}
+
+.nav li a.active {
+	background: green;
+	color: #fff;
+}
+
+p {
+	margin: 0px;
+	padding: 0px;
 }
 
 h4.center {
@@ -56,19 +132,17 @@ h5.center {
 	color: #666;
 }
 
+input { 
+	display: block;
+	width: 90%;
+	margin: 5px auto;
+	padding: 5px;
+	font-size: 0.9em;
+	text-align: center;
+}
+
 .active {
   font-weight: bold;
-}
-
-.nav ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  text-decoration: none;
-}
-
-.nav li:first-child {
-  padding-left: 0;
 }
 
 ul {
@@ -152,6 +226,15 @@ span.count {
 	padding: 10px 10px 10px;
 	border-radius: 10px;
 	flex-basis: 50%;
+
+	-webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.option-one:hover, .option-two:hover {
+	background: #ddd;
 }
 
 .option-one {
@@ -172,8 +255,8 @@ span.count {
 
 .question-button {
 	display: block;
-	width: 100px;
-	margin: 0px auto;
+	width: 120px;
+	margin: 10px auto 0px;
 	padding: 10px 30px;
 	border-radius: 10px;
 	font-size: 0.9em;
@@ -182,6 +265,28 @@ span.count {
 	border: none;
 	cursor: pointer;
 	text-align: center;
+
+	-webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.question-button.small {
+	width: 80px;
+	margin: 15px auto 0px;
+	padding: 10px 0px;
+	font-size: 0.75em;
+}
+
+.question-button:hover {
+	background: green;
+	color: #fff;
+}
+
+.question-button:disabled {
+	background: #eee;
+	color: #ccc;
 }
 
 .leaderboard-item {
@@ -238,5 +343,28 @@ span.count {
 
 .leaderboard-number {
 	font-size: 1.75em;
+}
+
+.login .avatar {
+	position: relative;
+	z-index: 2;
+	background: #eee;
+	height: 80px;
+	border-radius: 40px;
+}
+
+.login select {
+	display: block;
+	width: 80%;
+	padding: 20px;
+	margin: 10px auto;
+	font-size: 0.9em;
+	height: 30px;
+}
+
+option {
+	padding: 5px;
+	font-size: 0.9em;
+
 }
 
