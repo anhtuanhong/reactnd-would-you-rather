@@ -22,5 +22,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://anhtuanhong.github.io/reactnd-would-you-rather/"
+  "homepage": "http://anhtuanhong.me/would-you-rather/"
 }
